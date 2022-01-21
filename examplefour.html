@@ -62,7 +62,7 @@ function draw(){
       for(let j = STEP; j <= MAX_HEIGHT - STEP; j += STEP){
         let distanceToCenter = Math.abs(j - MAX_HEIGHT / 2);
         let variance = Math.max(MAX_HEIGHT / 2 - VARIANCE_FACTOR - distanceToCenter, 0);
-        let random = Math.random() * variance / 2 * -1;
+        let random = Math.random() * variance / 4 * -1;
         let point = {x: j, y: i + random};
         line.push(point)
       }
