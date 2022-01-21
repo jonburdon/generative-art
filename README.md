@@ -6,4 +6,10 @@ Inspiration and original code:
 https://levelup.gitconnected.com/generative-art-3-fundamental-concepts-to-get-you-started-44205dae167b
 
 
+The purpose of this project is to explore the P5.js library in terms of a potential tool for generative art.
 
+Examples will show various ways to refactor similar code.
+
+Future plans:
+1. Add interactions so the user can change colours and elements within the art by mouse interactions
+2. Generate unique and original art
