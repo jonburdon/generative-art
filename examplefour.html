@@ -69,8 +69,8 @@ function draw(){
       for(let j = 0; j < lines[i].length; j+=2){
         curveVertex(lines[i][j].x, lines[i][j].y);
         // Change the variable MONOCHROME below to TONES_1 or TONES_2 to use a colour palette
-        let random_index = Math.floor(Math.random() * TONES_1.length);
-        const [r, g, b] = TONES_1[random_index];
+        let random_index = Math.floor(Math.random() * TONES_2.length);
+        const [r, g, b] = TONES_2[random_index];
         fill(r, g, b);
         curveVertex(lines[i][j+1].x, lines[i][j+1].y)
       }
