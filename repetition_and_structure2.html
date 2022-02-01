@@ -37,15 +37,19 @@
       </ul>
 
       <div class="slidecontainer" style="margin-top: 30px;">
-        <input type="range" min="0" max="8" value="5" id="variance-input" class="slider" id="myRange">
+        <p>Randomness</p>
+        <input type="range" min="0" max="8" value="5" id="variance-input" class="slider" >
+        <p>Density</p>
+        <input type="range" min="2" max="100" value="8" id="density-input" class="slider" >
       </div>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 const MAX_HEIGHT = window.innerHeight / 2;
 const MAX_WIDTH = 2*window.innerWidth / 3;
-const DENSITY = 8;
-const GAP = MAX_HEIGHT / DENSITY;
+//Change Density to change the number of triangles in a row
+var DENSITY = 8;
+var GAP = MAX_HEIGHT / DENSITY;
 const RELOAD_TIMEOUT = 3000;
 const STROKE_COLOR = "#00203F";
 const TONES_1 = [[238, 66, 102], [31, 64, 104], [242, 228, 181]];
@@ -53,8 +57,10 @@ const TONES_2 = [[37, 106, 220], [31, 64, 104], [169, 251, 215]];
 const MONOCHROME = new Array(10).fill(0).map((_, i) => [i*24, i*25, i*26]);
 
 var varianceInput = document.getElementById('variance-input');
-
 var varianceLevel = (varianceInput.value)/10;
+
+var densityInput = document.getElementById('density-input');
+var densityLevel = densityInput.value;
 
 function setup(){
   createCanvas(MAX_HEIGHT, MAX_WIDTH);
@@ -62,14 +68,25 @@ function setup(){
   noLoop();
 }
 
+densityInput.oninput = function() {
+  console.log('Redrawing:', densityInput.value);
+  let DENSITY = densityInput.value;
+  console.log('DENSITY:', DENSITY);
+  setup();
+  redraw();
+}
 
 varianceInput.oninput = function() {
   setup();
   redraw();
 }
 
+
 function draw(){  
     console.log('Here it is:', varianceLevel);
+    let DENSITY = densityInput.value;
+    console.log('Density is now:', DENSITY);
+    var GAP = MAX_HEIGHT / DENSITY;
     const lines = [];
     let odd = false;
     for(let y = GAP / 2; y <= MAX_HEIGHT; y += GAP) {
@@ -112,6 +129,9 @@ const drawTriangle = (pointA, pointB, pointC) => {
 
 function redraw(){
 let varianceLevel = (varianceInput.value)/10;
+let densityLevel = densityInput.value;
+let DENSITY = densityLevel;
+console.log('updated');
 draw();
 }
 
