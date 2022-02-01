@@ -45,13 +45,13 @@
 const MAX_HEIGHT = 600;
 const MAX_WIDTH = 600;
 const STEP = 16;
+var varianceInput = document.getElementById('variance-input');
 
-const VARIANCE_FACTOR = 100;
+const VARIANCE_FACTOR = varianceInput.value;
 const TONES_1 = [[88, 123, 127], [57, 64, 50], [141, 171, 127]];
 const TONES_2 = [[26, 200, 237], [175, 117, 149], [140, 33, 85]];
 // Change the color value below to match the body background color
 const MONOCHROME = [[233, 233, 233]];
-var varianceInput = document.getElementById('variance-input');
 
 function setup(){
   createCanvas(MAX_HEIGHT, MAX_WIDTH);
@@ -59,8 +59,12 @@ function setup(){
   strokeWeight(2);
   noLoop();
 }
-varianceInput.addEventListener("change", draw);
+varianceInput.addEventListener("change", redraw);
+
+
+
 function draw(){  
+    console.log(varianceInput.value);
     const lines = [];
     for(let i = STEP; i < MAX_HEIGHT - STEP; i += STEP){
       let line = [];
@@ -90,7 +94,10 @@ function draw(){
     }
 }
 
-
+function redraw(){
+  
+draw();
+}
 
     </script>
 </html>
