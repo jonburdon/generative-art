@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Example Three</title></script>
+        <title>Example Four</title></script>
         <link rel="stylesheet" href="styles.css">
         </script>
         <style>
@@ -34,6 +34,10 @@
         <li><a href="examplethree.html">Example Three</a></li>
         <li><a href="examplefour.html">Example Four</a></li>
       </ul>
+
+      <div class="slidecontainer">
+        <input type="range" min="0" max="250" value="100" id="variance-input" class="slider" id="myRange">
+      </div>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
@@ -47,6 +51,7 @@ const TONES_1 = [[88, 123, 127], [57, 64, 50], [141, 171, 127]];
 const TONES_2 = [[26, 200, 237], [175, 117, 149], [140, 33, 85]];
 // Change the color value below to match the body background color
 const MONOCHROME = [[233, 233, 233]];
+var varianceInput = document.getElementById('variance-input');
 
 function setup(){
   createCanvas(MAX_HEIGHT, MAX_WIDTH);
@@ -54,7 +59,7 @@ function setup(){
   strokeWeight(2);
   noLoop();
 }
-
+varianceInput.addEventListener("change", draw);
 function draw(){  
     const lines = [];
     for(let i = STEP; i < MAX_HEIGHT - STEP; i += STEP){
