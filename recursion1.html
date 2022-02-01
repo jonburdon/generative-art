@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Example One</title></script>
-        </script>
+        <title>Recursion</title></script>
         <link rel="stylesheet" href="styles.css">
+        </script>
         <style>
             body {
                 display: flex;
@@ -22,6 +22,7 @@
                 margin: 100px;
                 color: #282828;
             }
+            ul {margin-bottom: 30px;}
         </style>
     </head>
     
@@ -38,39 +39,46 @@
         <li><a href="recursion1.html">Example Seven</a></li>
         <li><a href="recursion2.html">Example Eight</a></li>
       </ul>
+
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-
 const MAX_HEIGHT = 600;
 const MAX_WIDTH = 600;
-// Step defines width between lines
-const STEP = 16;
-
-
-
-
+const step = 30;
+let finalSize = 3;
+let startSteps;
+let offset = 2;
+let tileStep = (MAX_HEIGHT - offset * 2) / 6;
+let startSize = tileStep;
+let directions = [-1, 0, 1];
+const TONES_1 = [[238, 66, 102], [31, 64, 104], [242, 228, 181]];
+const TONES_2 = [[37, 106, 220], [31, 64, 104], [169, 251, 215]];
+const MONOCHROME = new Array(10).fill(0).map((_, i) => [i*24, i*25, i*26]);
+const BACKGROUND_COLOR = [0, 32, 63];
 function setup(){
   createCanvas(MAX_HEIGHT, MAX_WIDTH);
-  //Stroke color
-  stroke(40, 40, 40);
-  //Stroke weight
-  strokeWeight(2);
+  background(BACKGROUND_COLOR[0], BACKGROUND_COLOR[1], BACKGROUND_COLOR[2]);
+  stroke(0, 32, 63);
   noLoop();
+  strokeWeight(4)
+}
+drawRect = (x, y, width, height, xMovement, yMovement, steps) => {
+  let random_index = Math.floor(Math.random() * TONES_2.length);
+  const [r, g, b] = TONES_2[random_index];
+  fill(r, g, b);
+  rect(x, y, width, height);    
 }
 function draw(){  
-    const lines = [];
-    for(let i = STEP; i < MAX_HEIGHT - STEP; i += STEP){
-      lines.push([{x: STEP, y: i}, {x: MAX_HEIGHT, y: i}]);
-    }
     
-    // draw
-    for(let i = 0; i < lines.length; i++){
-      for(let j = 0; j < lines[i].length; j+=2){
-        line(lines[i][j].x, lines[i][j].y, lines[i][j+1].x, lines[i][j+1].y);
-      }
+  for( let x = offset; x < MAX_WIDTH - offset; x += tileStep) {
+    for( var y = offset; y < MAX_HEIGHT - offset; y += tileStep) {
+      startSteps = 2 + Math.ceil(Math.random() * 3)
+      let xDirection = directions[Math.floor(Math.random() * directions.length)]
+      let yDirection = directions[Math.floor(Math.random() * directions.length)]
+      drawRect(x, y, startSize, startSize, xDirection, yDirection, startSteps - 1);
     }
+  }
 }
-
     </script>
 </html>
