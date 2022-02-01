@@ -64,7 +64,6 @@ varianceInput.addEventListener("change", redraw);
 
 
 function draw(){  
-    console.log(varianceInput.value);
     const lines = [];
     for(let i = STEP; i < MAX_HEIGHT - STEP; i += STEP){
       let line = [];
@@ -95,7 +94,7 @@ function draw(){
 }
 
 function redraw(){
-  
+setup();  
 draw();
 }
 
