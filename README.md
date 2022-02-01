@@ -6,6 +6,10 @@ Published link: https://jonburdon.github.io/generative-art/
 Inspiration and original code:
 https://levelup.gitconnected.com/generative-art-3-fundamental-concepts-to-get-you-started-44205dae167b
 
+https://medium.com/@shvembldr/how-to-make-your-first-generative-art-with-p5-js-3f10afc07de2
+
+https://codepen.io/alzajac/pen/LYGmyjb
+
 Color codes from: https://coolors.co/
 
 Color Convertor: https://www.webfx.com/web-design/hex-to-rgb/
