@@ -36,7 +36,9 @@
         <li><a href="examplefour.html">Example Four</a></li>
       </ul>
 
-
+      <div class="slidecontainer" style="margin-top: 30px;">
+        <input type="range" min="0" max="8" value="5" id="variance-input" class="slider" id="myRange">
+      </div>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
@@ -50,13 +52,24 @@ const TONES_1 = [[238, 66, 102], [31, 64, 104], [242, 228, 181]];
 const TONES_2 = [[37, 106, 220], [31, 64, 104], [169, 251, 215]];
 const MONOCHROME = new Array(10).fill(0).map((_, i) => [i*24, i*25, i*26]);
 
+var varianceInput = document.getElementById('variance-input');
+
+var varianceLevel = (varianceInput.value)/10;
+
 function setup(){
   createCanvas(MAX_HEIGHT, MAX_WIDTH);
   stroke(STROKE_COLOR);
   noLoop();
 }
 
+
+varianceInput.oninput = function() {
+  setup();
+  redraw();
+}
+
 function draw(){  
+    console.log('Here it is:', varianceLevel);
     const lines = [];
     let odd = false;
     for(let y = GAP / 2; y <= MAX_HEIGHT; y += GAP) {
@@ -64,10 +77,12 @@ function draw(){
         const trait = [];
         const oddFactor = odd ? GAP/2 : 0;
         for(let x = GAP / 4; x <= MAX_HEIGHT; x += GAP) {
-        
+            
+            
+            
             trait.push({
-                x: x + (Math.random()*.8 - 0.4) * GAP + oddFactor,
-                y: y + (Math.random()*.8 - 0.4) * GAP
+                x: x + (Math.random()*varianceLevel - 0.4) * GAP + oddFactor,
+                y: y + (Math.random()*varianceLevel - 0.4) * GAP
             });
        
         }
@@ -93,6 +108,11 @@ const drawTriangle = (pointA, pointB, pointC) => {
   const [r, g, b] = TONES_1[random_index];
   fill(r, g, b);
   triangle(pointA.x, pointA.y, pointB.x, pointB.y, pointC.x, pointC.y);
+}
+
+function redraw(){
+let varianceLevel = (varianceInput.value)/10;
+draw();
 }
 
     </script>

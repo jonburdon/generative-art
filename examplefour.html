@@ -59,13 +59,7 @@ function setup(){
   strokeWeight(2);
   noLoop();
 }
-varianceInput.addEventListener("change", redraw);
-
-
-//var slider = document.getElementById("myRange");
-//var output = document.getElementById("demo");
-//output.innerHTML = slider.value;
-
+// Redraw when varianceInput input changes
 varianceInput.oninput = function() {
   setup();
   redraw();
