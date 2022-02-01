@@ -40,7 +40,7 @@
         <p>Randomness</p>
         <input type="range" min="0" max="8" value="5" id="variance-input" class="slider" >
         <p>Density</p>
-        <input type="range" min="2" max="100" value="8" id="density-input" class="slider" >
+        <input type="range" min="2" max="40" value="8" id="density-input" class="slider" >
       </div>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -83,7 +83,8 @@ varianceInput.oninput = function() {
 
 
 function draw(){  
-    console.log('Here it is:', varianceLevel);
+    console.log('Variance Level:', ((varianceInput.value)/10));
+    let varianceLevel = ((varianceInput.value)/10);
     let DENSITY = densityInput.value;
     console.log('Density is now:', DENSITY);
     var GAP = MAX_HEIGHT / DENSITY;
