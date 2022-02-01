@@ -35,7 +35,7 @@
         <li><a href="examplefour.html">Example Four</a></li>
       </ul>
 
-      <div class="slidecontainer">
+      <div class="slidecontainer" style="margin-top: 30px;">
         <input type="range" min="0" max="250" value="100" id="variance-input" class="slider" id="myRange">
       </div>
     </body>
@@ -65,11 +65,12 @@ varianceInput.addEventListener("change", redraw);
 //var slider = document.getElementById("myRange");
 //var output = document.getElementById("demo");
 //output.innerHTML = slider.value;
-/*
+
 varianceInput.oninput = function() {
+  setup();
   redraw();
 }
-*/
+
 
 function draw(){
   let VARIANCE_FACTOR = varianceInput.value;  
@@ -107,7 +108,6 @@ function draw(){
 
 function redraw(){
 let VARIANCE_FACTOR = varianceInput.value;
-setup();  
 draw();
 }
 
