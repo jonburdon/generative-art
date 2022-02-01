@@ -47,7 +47,7 @@ const MAX_WIDTH = 600;
 const STEP = 16;
 var varianceInput = document.getElementById('variance-input');
 
-const VARIANCE_FACTOR = varianceInput.value;
+let VARIANCE_FACTOR = varianceInput.value;
 const TONES_1 = [[88, 123, 127], [57, 64, 50], [141, 171, 127]];
 const TONES_2 = [[26, 200, 237], [175, 117, 149], [140, 33, 85]];
 // Change the color value below to match the body background color
@@ -62,8 +62,17 @@ function setup(){
 varianceInput.addEventListener("change", redraw);
 
 
+//var slider = document.getElementById("myRange");
+//var output = document.getElementById("demo");
+//output.innerHTML = slider.value;
+/*
+varianceInput.oninput = function() {
+  redraw();
+}
+*/
 
-function draw(){  
+function draw(){
+  let VARIANCE_FACTOR = varianceInput.value;  
     const lines = [];
     for(let i = STEP; i < MAX_HEIGHT - STEP; i += STEP){
       let line = [];
@@ -79,6 +88,7 @@ function draw(){
     
 
     //draw
+    console.log(varianceInput.value);
     for(let i = 5; i < lines.length; i++){
       beginShape();
       for(let j = 0; j < lines[i].length; j+=2){
@@ -93,7 +103,10 @@ function draw(){
     }
 }
 
+
+
 function redraw(){
+let VARIANCE_FACTOR = varianceInput.value;
 setup();  
 draw();
 }
