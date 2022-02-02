@@ -52,6 +52,7 @@ const step = 30;
 let finalSize = 3;
 let startSteps;
 let offset = 2;
+//The divisor at the end of the below is the grid size value
 let tileStep = (MAX_HEIGHT - offset * 2) / 6;
 let startSize = tileStep;
 let directions = [-1, 0, 1];
@@ -70,6 +71,7 @@ function setup(){
   background(BACKGROUND_COLOR[0], BACKGROUND_COLOR[1], BACKGROUND_COLOR[2]);
   stroke(0, 32, 63);
   noLoop();
+  // User Control 1: Adjust stroke weight down for higher depth values
   strokeWeight(4)
 }
 
@@ -81,6 +83,7 @@ drawRect = (x, y, width, height, xMovement, yMovement, steps) => {
     
   if(steps >= 0) {
     let newSize = (startSize) * (steps / startSteps) + finalSize;
+    // User Control 2: The Value at the end of the next 4 lines controls the recursion - position and offset of centre point
     let newX = x + (width - newSize) / 2
     let newY = y + (height - newSize) / 2
     newX = newX - ((x - newX) / (steps + 2)) * xMovement
@@ -94,7 +97,8 @@ function draw(){
     
   for( let x = offset; x < MAX_WIDTH - offset; x += tileStep) {
     for( var y = offset; y < MAX_HEIGHT - offset; y += tileStep) {
-      startSteps = 2 + Math.ceil(Math.random() * 3)
+      // User Control 3: The value 2 before the Maths.ceil function below controls the min and max number of smaller squares within each square on the grid. Try changing between 1 and 10.
+      startSteps = 3 + Math.ceil(Math.random() * 3)
       let xDirection = directions[Math.floor(Math.random() * directions.length)]
       let yDirection = directions[Math.floor(Math.random() * directions.length)]
       drawRect(x, y, startSize, startSize, xDirection, yDirection, startSteps - 1);
