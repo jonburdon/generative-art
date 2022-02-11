@@ -44,7 +44,10 @@
           <div class="slidecontainer" style="margin-top: 30px;">
             <p>Grid Size</p>
             <input type="range" min="0" max="8" value="5" id="gridsize-input" class="slider" >
+            <p>Hypnotic depth</p>
+            <input type="range" min="0" max="15" value="5" id="depth-input" class="slider" >
           </div>
+          
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
@@ -66,6 +69,7 @@ const TONES_1 = [[238, 66, 102], [31, 64, 104], [242, 228, 181]];
 const TONES_2 = [[37, 106, 220], [31, 64, 104], [169, 251, 215]];
 const MONOCHROME = new Array(10).fill(0).map((_, i) => [i*24, i*25, i*26]);
 var gridSizeInput = document.getElementById('gridsize-input');
+var depthInput = document.getElementById('depth-input');
 
 const RELOAD_TIMEOUT = 3000;
 
@@ -106,6 +110,12 @@ gridSizeInput.oninput = function() {
   draw();
 }
 
+depthInput.oninput = function() {
+  console.log('Redrawing:');
+  setup();
+  draw();
+}
+
 function draw(){  
   gridSize = gridSizeInput.value;
   tileStep = (MAX_HEIGHT - offset * 2) / gridSize;
@@ -115,10 +125,11 @@ function draw(){
   console.log('tileStep', tileStep);
   console.log('gridSize thing3', gridSize);
   console.log('startSize', startSize);
+  depth = depthInput.value;
   for( let x = offset; x < MAX_WIDTH - offset; x += tileStep) {
     for( var y = offset; y < MAX_HEIGHT - offset; y += tileStep) {
       // User Control 4: The value 2 before the Maths.ceil function below controls the min and max number of smaller squares within each square on the grid. Try changing between 1 and 10.
-      startSteps = 3 + Math.ceil(Math.random() * 3)
+      startSteps = 3 + Math.ceil(Math.random() * depth);
       let xDirection = directions[Math.floor(Math.random() * directions.length)]
       let yDirection = directions[Math.floor(Math.random() * directions.length)]
       drawRect(x, y, startSize, startSize, xDirection, yDirection, startSteps - 1);
