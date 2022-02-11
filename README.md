@@ -20,6 +20,17 @@ The purpose of this project is to explore the P5.js library in terms of a potent
 
 Examples will show various ways to refactor similar code.
 
+### Notes and programming principles
+
+#### Randomness
+Core technique in generative art. Used to effect the curveVertex function of p5js
+
+#### Repetition & Structure
+The Triangles are based on a repeating grid of alternating rectangles. When randomness is introduced, the points on the grid can be moved around to produce the interlocking effect.
+
+#### Recursion
+The Hypnotic Squares effect uses recursion within the drawrect function. This function calls itself repeatedly with a reducing sized square until the steps are reduced to zero
+
 Future plans:
 1. Add interactions so the user can change colours and elements within the art by mouse interactions
 2. Generate unique and original art
