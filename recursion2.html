@@ -60,19 +60,16 @@ let finalSize = 3;
 let startSteps;
 let offset = 2;
 //User Control 1: The divisor gridSize at the end of the below is the grid size value
-// NB Variables below must use VAR so they can be updated within various functions
-var gridSize = 6;
-var tileStep = (MAX_HEIGHT - offset * 2) / gridSize;
-var startSize = tileStep;
+let gridSize = 6;
+let tileStep = (MAX_HEIGHT - offset * 2) / gridSize;
+let startSize = tileStep;
 let directions = [-1, 0, 1];
 const TONES_1 = [[238, 66, 102], [31, 64, 104], [242, 228, 181]];
 const TONES_2 = [[37, 106, 220], [31, 64, 104], [169, 251, 215]];
 const MONOCHROME = new Array(10).fill(0).map((_, i) => [i*24, i*25, i*26]);
-var gridSizeInput = document.getElementById('gridsize-input');
-var depthInput = document.getElementById('depth-input');
-
+let gridSizeInput = document.getElementById('gridsize-input');
+let depthInput = document.getElementById('depth-input');
 const RELOAD_TIMEOUT = 3000;
-
 const BACKGROUND_COLOR = [0, 32, 63];
 
 
