@@ -55,24 +55,110 @@ function setup() {
 // 1. Move to Github
 // 2. Use a Rows Loop with nested loop for Even and Odd
 // 3. 
-  
-//This is a loop to draw a row
+console.clear();
 
+for (let i = 0; i < 10; i++) {
+console.log('run');
+console.log('i is ', i);
+
+    for (let r = 1; r < 11; r++) {
+      console.log('number is ', r+(i*10));
+      
+      dots[r+(i*10)] = {
+      x: (r * 40),
+      y: 20+((i*40)),
+      display: function () {
+        stroke(255);
+        noFill();
+        ellipse(this.x, this.y, 24, 24);
+      }
+
+        };
+
+}
+}
+console.log('drawing');
+console.log(dots[15]);
+
+
+
+
+  //This is a loop to draw a row
+/*
 for (let i = 0; i < 16; i++) {
     console.log(i);
     console.log(oddOrEven(i));
     if (oddOrEven(i) === "even") {
-        console.log('Wow i is even');
-        
-  
+      
+        for (let r = 0; r < 16; r++) {
+            console.log("r is", r, "and i is ", i);
+    dots[r+i] = {
+      x: (r * 40),
+      y: 20+((i*40)),
+      display: function () {
+        stroke(255);
+        noFill();
+        ellipse(this.x, this.y, 24, 24);
+      }
+
+        };
+      }
+      /*
+  for (let r = 16; r < 32; r++) {
+    console.log("i is", i);
+    
+    dots[r] = {
+      x: (r-16)*40,
+      y: 20+(i*4),
+      display: function () {
+        stroke(255);
+        noFill();
+        ellipse(this.x, this.y, 24, 24);
+      }
+
+    };
+  }
+  */
+/*
+  for (let r = 32; r < 48; r++) {
+    console.log("i aiming for 160 is", i);
+    dots[r] = {
+      x: (r-32)*40,
+      y: 20+(i*8),
+      display: function () {
+        stroke(255);
+        noFill();
+        ellipse(this.x, this.y, 24, 24);
+      }
+
+    };
+  }
+
+  for (let r = 48; r < 64; r++) {
+    console.log("i aiming for 240", i);
+    dots[r] = {
+      x: (r-48)*40,
+      y: 20+(i*12),
+      display: function () {
+        stroke(255);
+        noFill();
+        ellipse(this.x, this.y, 24, 24);
+      }
+
+    };
+  }
+*/
+
+/*
 } else {
-    console.log('This time i is odd');
+    //console.log('This time i is odd', i);
+    //ellipse(i+20, i*40, 24, 24);
     
 }
     };
   
 
-
+/*
   //This is a loop to draw a row
   for (let i = 0; i < 16; i++) {
     dots[i] = {
@@ -87,10 +173,11 @@ for (let i = 0; i < 16; i++) {
     };
   }
   
+*/
 
   //This is a loop to draw row two, increment y by 60 each time and increment the start value of the loop by 16 each time
 
-  
+  /*
   for (let r = 16; r < 50; r++) {
     dots[r] = {
       x: (r-16)*40,
@@ -103,28 +190,34 @@ for (let i = 0; i < 16; i++) {
 
     };
   }
-  
+  */
   
   console.log(dots);
-  console.log(dots[16]);
+
+
+
+
+
+
+
 }
 
 function draw() {
-  background(0);
-  for (let i = 0; i < dots.length; i++) {
+  //background(0);
+
+  for (let i = 1; i < dots.length; i++) {
     //dots[i].move();
+    //console.log('drawing');
     dots[i].display();
   }
+
+
 }
 
 function oddOrEven(x) {
   return ( x & 1 ) ? "odd" : "even";
 }
 
-function checkNumber(argNumber) {
-  document.getElementById("result").innerHTML = "Number " + argNumber + " is " + oddOrEven(argNumber);
-}
- 
-checkNumber(17);
+
 </script>
 </html>
