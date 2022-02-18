@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Yo Sushi Wall</title></script>
+        <title>Sushi Wall</title></script>
         <link rel="stylesheet" href="styles.css">
         </script>
         <style>
@@ -47,41 +47,44 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 
-var dots = [];
+let dots = [];
+let dotsInCol = 16;
+let gridSize = 600/(dotsInCol-1);
 
 function setup() {
   createCanvas(600, 400);
- // Next Steps:
-// 1. Move to Github
-// 2. Use a Rows Loop with nested loop for Even and Odd
-// 3. 
+  background(0);
 console.clear();
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < gridSize; i++) {
 console.log('run');
 console.log('i is ', i);
 
-    for (let r = 1; r < 11; r++) {
+    for (let r = 1; r < gridSize+1; r++) {
       console.log('number is ', r+(i*10));
-      
-      dots[r+(i*10)] = {
-      x: (r * 40),
-      y: 20+((i*40)),
-      display: function () {
-        stroke(255);
-        noFill();
-        ellipse(this.x, this.y, 24, 24);
+      // value 40 is grid size an 10 is number of items in grid, need to make offset to be half of grid size value
+      let offset;
+      if (oddOrEven(i) === "even") {
+        offset = gridSize;
+      }
+      else {
+        offset = gridSize/2;
       }
 
-        };
+      dots[r+(i*dotsInCol)] = {
+        x: ((r * gridSize)-offset),
+        y: 20+((i*gridSize)),
+        display: function () {
+          stroke(255);
+          noFill();
+          ellipse(this.x, this.y, 24, 24);
+          }
+      };
 
 }
 }
 console.log('drawing');
 console.log(dots[15]);
-
-
-
 
   //This is a loop to draw a row
 /*

@@ -34,7 +34,7 @@ The Hypnotic Squares effect uses recursion within the drawrect function. This fu
 Future plans:
 1. [done] Add interactions so the user can change colours and elements within the art by mouse interactions
 2. Unique Project - Sushi Wall
-* Staggered Grid
+* [done] Staggered Grid
 * Grid can be any size
 * Different styled circles
 * Circles appear in groups, dependent on each other
