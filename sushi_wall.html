@@ -71,12 +71,13 @@ console.log('i is ', i);
       else {
         offset = gridSize/2;
       }
-      let sizeAdjust = random(0,2);
+      let sizeAdjust = random(0.2,2);
+      let swAdjust = random(0,8);
       
       dots[r+(i*dotsInCol)] = {
         x: ((r * gridSize)-offset),
         y: 20+((i*gridSize)),
-        sw: 2,
+        sw: swAdjust,
         cs: circleSize*sizeAdjust,
         display: function () {
           strokeWeight(this.sw);
