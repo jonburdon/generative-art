@@ -32,5 +32,10 @@ The Triangles are based on a repeating grid of alternating rectangles. When rand
 The Hypnotic Squares effect uses recursion within the drawrect function. This function calls itself repeatedly with a reducing sized square until the steps are reduced to zero
 
 Future plans:
-1. Add interactions so the user can change colours and elements within the art by mouse interactions
-2. Generate unique and original art
+1. [done] Add interactions so the user can change colours and elements within the art by mouse interactions
+2. Unique Project - Sushi Wall
+* Staggered Grid
+* Grid can be any size
+* Different styled circles
+* Circles appear in groups, dependent on each other
+* Mouse interactions
