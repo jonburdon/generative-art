@@ -48,14 +48,15 @@
     <script>
 
 let dots = [];
-let dotsInCol = 16;
+let dotsInCol = 25;
 let gridSize = 600/(dotsInCol-1);
+let circleSize = (600/dotsInCol)*.65;
 
 function setup() {
   createCanvas(600, 400);
   background(0);
 console.clear();
-
+console.log('circleSize is', circleSize);
 for (let i = 0; i < gridSize; i++) {
 console.log('run');
 console.log('i is ', i);
@@ -70,14 +71,14 @@ console.log('i is ', i);
       else {
         offset = gridSize/2;
       }
-
+      console.log('circleSize REALLY is', circleSize);
       dots[r+(i*dotsInCol)] = {
         x: ((r * gridSize)-offset),
         y: 20+((i*gridSize)),
         display: function () {
           stroke(255);
           noFill();
-          ellipse(this.x, this.y, 24, 24);
+          ellipse(this.x, this.y, circleSize, circleSize);
           }
       };
 
