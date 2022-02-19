@@ -85,6 +85,7 @@ console.log('i is ', i);
         // cs: circleSize*sizeAdjust,
         cs: circleSize,
         fillCol: 000,
+        different: 0,
         display: function () {
           strokeWeight(this.sw);
           stroke(125);
@@ -114,26 +115,39 @@ console.log('i is ', i);
       dots[i].cs = circleSize*sizeAdjuster;
       dots[i].sw = swAdjuster;
       dots[i].fillCol = 255;
-
-       //Horizontal Neighbours
-      dots[i+1].cs = circleSize*sizeAdjuster;
-      dots[i+1].sw = swAdjuster;
-      dots[i+1].fillCol = 255;
-      dots[i-1].cs = circleSize*sizeAdjuster;
-      dots[i-1].sw = swAdjuster;
-      dots[i-1].fillCol = 255;
-     
-      // Vertical Neighbours
-
-      dots[i+dotsInCol].cs = circleSize*sizeAdjuster;
-      dots[i+dotsInCol].sw = swAdjuster;
-      dots[i+dotsInCol].fillCol = 255;
-      dots[i-dotsInCol].cs = circleSize*sizeAdjuster;
-      dots[i-dotsInCol].sw = swAdjuster;
-      dots[i-dotsInCol].fillCol = 255;
-
-
+       
+      //Immediate Neighbours will be randomly changed
+      let closeByDots = [1, dotsInCol]
+      closeByDots.forEach(function (dotSet1, index) {
+          let willBeDiff = random(0,6); 
+          console.log(dotSet1, index);
+          if (willBeDiff > 3) {
+            dots[i+dotSet1].cs = circleSize*sizeAdjuster;
+            dots[i+dotSet1].sw = swAdjuster;
+            dots[i+dotSet1].fillCol = 255;
+            dots[i+dotSet1].different = 6;
+            dots[i-dotSet1].cs = circleSize*sizeAdjuster;
+            dots[i-dotSet1].sw = swAdjuster;
+            dots[i-dotSet1].fillCol = 255;
+            dots[i-dotSet1].different = 6;
+          }
+        });
       }
+      // Iterate through all dots. If dot difference = 6 then decide whether to change neighbours
+      //console.clear();
+for (let i = 1; i < dots.length; i++) {
+if((dots[i].different) === 6) {
+  console.log("Found one");
+  console.log(dots[i].different);
+  // Assign difference value to next Neighbours
+  dots[i].different = random(3,5);
+  console.log(dots[i].different);
+
+
+
+}
+
+}
 
 
       
