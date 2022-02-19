@@ -79,11 +79,11 @@ console.log('i is ', i);
         x: ((r * gridSize)-offset),
         y: 20+((i*gridSize)),
         // Randomise Stroke Width:
-        //sw: swAdjust,
-        sw: 1.5,
+        sw: swAdjust,
+        //sw: 1.5,
         // Randomise Circle Size
-        // cs: circleSize*sizeAdjust,
-        cs: circleSize,
+        cs: circleSize*sizeAdjust,
+        //cs: circleSize,
         fillCol: 000,
         different: 0,
         display: function () {
@@ -103,8 +103,23 @@ console.log('i is ', i);
       let sizeAdjuster = random(0.2,3);
       let swAdjuster = random(0,8);
 
-      drawPatch(patchCentre, sizeAdjuster, swAdjuster);
-      
+      drawPatch(patchCentre, sizeAdjuster, swAdjuster, 6);
+
+      // Draw second Patch
+      patchCentre = Math.floor(random(0,allDots));
+      sizeAdjuster = random(0.2,3);
+      swAdjuster = random(0,8);
+
+      drawPatch(patchCentre, sizeAdjuster, swAdjuster, 16);
+
+      // Draw more Patches
+      let differences = [20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200]
+      differences.forEach(function (item, index) {
+        patchCentre = Math.floor(random(0,allDots));
+        sizeAdjuster = random(0.2,3);
+        swAdjuster = random(0,8);
+        drawPatch(patchCentre, sizeAdjuster, swAdjuster, differences);
+      });
    
 }
 
@@ -126,12 +141,12 @@ function oddOrEven(x) {
 }
 
 // Create a patch of dots around the patchCentre
-function drawPatch(pc, sa, sw) {
+function drawPatch(pc, sa, sw, diff) {
     for (let i = pc; i < pc+1; i++) {
           dots[i].cs = circleSize*sa;
           dots[i].sw = sw;
           dots[i].fillCol = 255;
-          changeNeighbours(i, sa, sw, 3);
+          changeNeighbours(i, sa, sw, diff-3);
           }
           
           // Iterate through all dots. If dot difference = 6 then they are part of a patch and so randomly decide whether to change neighbours
@@ -139,13 +154,13 @@ function drawPatch(pc, sa, sw) {
           // For more patches, more 'Different values will be needed'
 
             for (let i = 1; i < dots.length; i++) {
-          if((dots[i].different) === 6) {
+          if((dots[i].different) === diff) {
             console.log("Found one");
             console.log(dots[i].different);
             // Assign difference value to next Neighbours
-            dots[i].different = random(3,5);
+            dots[i].different = random(diff-3,diff-1);
             console.log(dots[i].different);
-            changeNeighbours(i, sa, sw, 3);
+            changeNeighbours(i, sa, sw, diff-3);
           }
 
           }
