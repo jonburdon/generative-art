@@ -115,8 +115,12 @@ console.log('i is ', i);
       dots[i].cs = circleSize*sizeAdjuster;
       dots[i].sw = swAdjuster;
       dots[i].fillCol = 255;
-       
+      
+      changeNeighbours(i, sizeAdjuster, swAdjuster, 3);
+
       //Immediate Neighbours will be randomly changed
+
+      /*
       let closeByDots = [1, dotsInCol]
       closeByDots.forEach(function (dotSet1, index) {
           let willBeDiff = random(0,6); 
@@ -132,7 +136,10 @@ console.log('i is ', i);
             dots[i-dotSet1].different = 6;
           }
         });
+*/
+        
       }
+
       // Iterate through all dots. If dot difference = 6 then decide whether to change neighbours
       //console.clear();
 for (let i = 1; i < dots.length; i++) {
@@ -143,7 +150,7 @@ if((dots[i].different) === 6) {
   dots[i].different = random(3,5);
   console.log(dots[i].different);
 
-
+  changeNeighbours(i, sizeAdjuster, swAdjuster, 3);
 
 }
 
@@ -167,6 +174,26 @@ function draw() {
 
 function oddOrEven(x) {
   return ( x & 1 ) ? "odd" : "even";
+}
+
+function changeNeighbours(loopval, sizeAd, swAd, diffThreshold) {
+  let closeByDots = [1, dotsInCol]
+      closeByDots.forEach(function (dotSet1, index) {
+          let willBeDiff = random(0,6); 
+          console.log(dotSet1, index);
+          if (willBeDiff > diffThreshold) {
+            dots[loopval+dotSet1].cs = circleSize*sizeAd;
+            dots[loopval+dotSet1].sw = swAd;
+            dots[loopval+dotSet1].fillCol = 255;
+            dots[loopval+dotSet1].different = 6;
+            dots[loopval-dotSet1].cs = circleSize*sizeAd;
+            dots[loopval-dotSet1].sw = swAd;
+            dots[loopval-dotSet1].fillCol = 255;
+            dots[loopval-dotSet1].different = 6;
+          }
+        });
+
+
 }
 
 
