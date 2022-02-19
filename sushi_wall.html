@@ -99,14 +99,43 @@ console.log('i is ', i);
 
       let allDots = dotsInCol*dotsInCol;
       let patchCentre = Math.floor(random(0,allDots));
-      let sizeAdjuster = random(0.2,4);
+      let sizeAdjuster = random(0.2,3);
       let swAdjuster = random(0,8);
 
       console.log ('Random selection is: ', patchCentre);
       console.log("size is:", dots[patchCentre].sw);
-      dots[patchCentre].cs = circleSize*sizeAdjuster;
-      dots[patchCentre].sw = swAdjuster;
+      //dots[patchCentre].cs = circleSize*sizeAdjuster;
+      //dots[patchCentre].sw = swAdjuster;
+      //dots[patchCentre].fillCol = 255;
       console.log("size is:", dots[patchCentre].sw);
+      // Create a patch of dots around the patchCentre
+
+      for (let i = patchCentre; i < patchCentre+1; i++) {
+      dots[i].cs = circleSize*sizeAdjuster;
+      dots[i].sw = swAdjuster;
+      dots[i].fillCol = 255;
+
+       //Horizontal Neighbours
+      dots[i+1].cs = circleSize*sizeAdjuster;
+      dots[i+1].sw = swAdjuster;
+      dots[i+1].fillCol = 255;
+      dots[i-1].cs = circleSize*sizeAdjuster;
+      dots[i-1].sw = swAdjuster;
+      dots[i-1].fillCol = 255;
+     
+      // Vertical Neighbours
+
+      dots[i+dotsInCol].cs = circleSize*sizeAdjuster;
+      dots[i+dotsInCol].sw = swAdjuster;
+      dots[i+dotsInCol].fillCol = 255;
+      dots[i-dotsInCol].cs = circleSize*sizeAdjuster;
+      dots[i-dotsInCol].sw = swAdjuster;
+      dots[i-dotsInCol].fillCol = 255;
+
+
+      }
+
+
       
 }
 
