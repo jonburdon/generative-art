@@ -103,44 +103,9 @@ console.log('i is ', i);
       let sizeAdjuster = random(0.2,3);
       let swAdjuster = random(0,8);
 
-      console.log ('Random selection is: ', patchCentre);
-      console.log("size is:", dots[patchCentre].sw);
-      //dots[patchCentre].cs = circleSize*sizeAdjuster;
-      //dots[patchCentre].sw = swAdjuster;
-      //dots[patchCentre].fillCol = 255;
-      console.log("size is:", dots[patchCentre].sw);
-      // Create a patch of dots around the patchCentre
-
-      for (let i = patchCentre; i < patchCentre+1; i++) {
-      dots[i].cs = circleSize*sizeAdjuster;
-      dots[i].sw = swAdjuster;
-      dots[i].fillCol = 255;
+      drawPatch(patchCentre, sizeAdjuster, swAdjuster);
       
-      changeNeighbours(i, sizeAdjuster, swAdjuster, 3);
-        
-      }
-
-      // Iterate through all dots. If dot difference = 6 then they are part of a patch and so randomly decide whether to change neighbours
-
-      // For more patches, more 'Different values will be needed'
-
-      //console.clear();
-for (let i = 1; i < dots.length; i++) {
-if((dots[i].different) === 6) {
-  console.log("Found one");
-  console.log(dots[i].different);
-  // Assign difference value to next Neighbours
-  dots[i].different = random(3,5);
-  console.log(dots[i].different);
-
-  changeNeighbours(i, sizeAdjuster, swAdjuster, 3);
-
-}
-
-}
-
-
-      
+   
 }
 
 function draw() {
@@ -155,34 +120,63 @@ function draw() {
 
 }
 
+// Check if Odd or Even
 function oddOrEven(x) {
   return ( x & 1 ) ? "odd" : "even";
 }
 
-// Check all dots close to loopVal and randomly decide if they should be changed
+// Create a patch of dots around the patchCentre
+function drawPatch(pc, sa, sw) {
+    for (let i = pc; i < pc+1; i++) {
+          dots[i].cs = circleSize*sa;
+          dots[i].sw = sw;
+          dots[i].fillCol = 255;
+          changeNeighbours(i, sa, sw, 3);
+          }
+          
+          // Iterate through all dots. If dot difference = 6 then they are part of a patch and so randomly decide whether to change neighbours
 
+          // For more patches, more 'Different values will be needed'
+
+            for (let i = 1; i < dots.length; i++) {
+          if((dots[i].different) === 6) {
+            console.log("Found one");
+            console.log(dots[i].different);
+            // Assign difference value to next Neighbours
+            dots[i].different = random(3,5);
+            console.log(dots[i].different);
+            changeNeighbours(i, sa, sw, 3);
+          }
+
+          }
+
+    }
+
+
+
+
+// Check all dots close to loopVal and randomly decide if they should be changed
 function changeNeighbours(loopval, sizeAd, swAd, diffThreshold) {
   let closeByDots = [1, dotsInCol]
       closeByDots.forEach(function (dotSet1, index) {
           let willBeDiff = random(0,6); 
           console.log(dotSet1, index);
-          
+          // Only draw within range of dot length
           if (willBeDiff > diffThreshold) {
             if (loopval+dotSet1 < (dotsInCol*dotsInCol)) {
-            dots[loopval+dotSet1].cs = circleSize*sizeAd;
-            dots[loopval+dotSet1].sw = swAd;
-            dots[loopval+dotSet1].fillCol = 255;
-            dots[loopval+dotSet1].different = 6;
-          }
-            
+              dots[loopval+dotSet1].cs = circleSize*sizeAd;
+              dots[loopval+dotSet1].sw = swAd;
+              dots[loopval+dotSet1].fillCol = 255;
+              dots[loopval+dotSet1].different = 6;
+            }
+            if (loopval-dotSet1 > 0) {
             dots[loopval-dotSet1].cs = circleSize*sizeAd;
             dots[loopval-dotSet1].sw = swAd;
             dots[loopval-dotSet1].fillCol = 255;
             dots[loopval-dotSet1].different = 6;
+            }
           }
         });
-
-
 }
 
 
