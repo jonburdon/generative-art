@@ -86,9 +86,10 @@ console.log('i is ', i);
         //cs: circleSize,
         fillCol: 000,
         different: 0,
+        strCol: 125,
         display: function () {
           strokeWeight(this.sw);
-          stroke(125);
+          stroke(this.strCol);
           fill(this.fillCol);
           ellipse(this.x, this.y, this.cs, this.cs);
           }
@@ -145,7 +146,7 @@ function drawPatch(pc, sa, sw, diff) {
     for (let i = pc; i < pc+1; i++) {
           dots[i].cs = circleSize*sa;
           dots[i].sw = sw;
-          dots[i].fillCol = 255;
+          dots[i].fillCol = 000;
           changeNeighbours(i, sa, sw, diff-3);
           }
           
@@ -155,11 +156,8 @@ function drawPatch(pc, sa, sw, diff) {
 
             for (let i = 1; i < dots.length; i++) {
           if((dots[i].different) === diff) {
-            console.log("Found one");
-            console.log(dots[i].different);
             // Assign difference value to next Neighbours
             dots[i].different = random(diff-3,diff-1);
-            console.log(dots[i].different);
             changeNeighbours(i, sa, sw, diff-3);
           }
 
@@ -181,14 +179,18 @@ function changeNeighbours(loopval, sizeAd, swAd, diffThreshold) {
             if (loopval+dotSet1 < (dotsInCol*dotsInCol)) {
               dots[loopval+dotSet1].cs = circleSize*sizeAd;
               dots[loopval+dotSet1].sw = swAd;
-              dots[loopval+dotSet1].fillCol = 255;
+              dots[loopval+dotSet1].fillCol = 000;
               dots[loopval+dotSet1].different = 6;
+              
+              
+          
             }
             if (loopval-dotSet1 > 0) {
             dots[loopval-dotSet1].cs = circleSize*sizeAd;
             dots[loopval-dotSet1].sw = swAd;
-            dots[loopval-dotSet1].fillCol = 255;
+            dots[loopval-dotSet1].fillCol = 000;
             dots[loopval-dotSet1].different = 6;
+            
             }
           }
         });
